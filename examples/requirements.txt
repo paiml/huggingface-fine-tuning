@@ -6,6 +6,7 @@ numpy
 scikit-learn
 transformers
 accelerate
+sentencepiece
 
 # But you can use the frozen (strict) packges below
 # below is from pip freeze
