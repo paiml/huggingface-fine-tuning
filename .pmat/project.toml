@@ -1,8 +1,9 @@
 # PMAT Project Configuration
-# See: https://github.com/paiml/pmat
+
+[pmat]
+version = "2.214.0"
 
 [project]
-version = "2.214.0"
 name = "huggingface-fine-tuning"
 type = "demo"
 
