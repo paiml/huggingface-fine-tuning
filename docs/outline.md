@@ -2,6 +2,15 @@
 
 ## Module 1: Working with Data
 
+Build robust data pipelines for transformer fine-tuning. Load datasets from multiple sources, apply transformations efficiently, and handle real-world data challenges like class imbalance.
+
+**Learning Objectives:**
+1. Load and explore datasets from Hub, CSV, JSON, and Parquet formats
+2. Apply tokenization with proper padding and truncation strategies
+3. Handle imbalanced data through augmentation and sampling techniques
+
+---
+
 ### 1.1 Introduction to Datasets
 
 | # | Video | Duration | Description |
@@ -66,6 +75,15 @@
 
 ## Module 2: Training
 
+Fine-tune transformer models using the Trainer API. Configure training parameters, optimize performance with mixed precision, and monitor progress with callbacks and logging.
+
+**Learning Objectives:**
+1. Configure and run training with TrainingArguments and Trainer API
+2. Optimize training with FP16, learning rate schedules, and proper metrics
+3. Implement callbacks for logging, early stopping, and debugging
+
+---
+
 ### 2.1 Trainer API
 
 | # | Video | Duration | Description |
@@ -127,6 +145,15 @@
 ---
 
 ## Module 3: Publishing
+
+Share fine-tuned models with the community. Publish to Hugging Face Hub with proper documentation, and automate the training-to-deployment pipeline with GitHub Actions.
+
+**Learning Objectives:**
+1. Authenticate and publish models to Hugging Face Hub with model cards
+2. Build automated CI/CD pipelines for training and publishing
+3. Package ML workflows with Docker and GitHub Container Registry
+
+---
 
 ### 3.1 Publishing Models
 
