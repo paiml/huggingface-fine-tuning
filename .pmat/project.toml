@@ -1,17 +1,4 @@
-# PMAT Project Configuration
-
 [pmat]
 version = "2.214.0"
-
-[project]
-name = "huggingface-fine-tuning"
-type = "demo"
-
-[quality]
-min_coverage = 0
-max_complexity = 15
-max_cognitive = 20
-
-[gates]
-enabled = true
-strict = false
+last_compliance_check = "2026-01-29T14:16:31.086126566Z"
+auto_update = false
