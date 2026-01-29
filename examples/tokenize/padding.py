@@ -7,7 +7,7 @@ tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 sentences = [
     "All trails are closed due to wet conditions",
     "Blankets Creek is open, Rope Mill is closed",
-    "Check website for updates"
+    "Check website for updates",
 ]
 
 # Basic tokenization

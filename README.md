@@ -1,31 +1,139 @@
-[![Fine-tuning with Hugging Face](./assets/banner.svg)](https://ds500.paiml.com "Pragmatic AI Labs")
-
-This repository contains hands-on labs for the Fine-tuning with Hugging Face course from Pragmatic AI Labs.
-
 # Fine-tuning with Hugging Face
 
-In this course, you will learn how to fine-tune transformer models using the Hugging Face ecosystem. You'll work with datasets, tokenizers, and the Trainer API to build text classification models, handle imbalanced data, customize training, and publish your models to the Hugging Face Hub.
+<p align="center">
+  <a href="https://ds500.paiml.com" title="Pragmatic AI Labs">
+    <img src="./assets/banner.svg" alt="Fine-tuning with Hugging Face" width="600">
+  </a>
+</p>
 
-## Contents
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Transformers-orange)](https://huggingface.co/docs/transformers)
 
-This repository has several examples located in the [./examples](./examples) directory and hands-on labs in the [./labs](./labs) directory. Make sure you have Python installed and you are using [Visual Studio Code](https://code.visualstudio.com/?WT.mc_id=academic-0000-alfredodeza).
+<p align="center">
+  <strong>Hands-on labs for fine-tuning transformer models with Hugging Face</strong><br>
+  Datasets | Tokenizers | Trainer API | Model Publishing
+</p>
 
-This repository is *Codespaces ready*, and it is set as a template repository. You can create a new repository from this template and start working on your own with Codespaces. This means that Python, Copilot, and all the extensions are already installed and configured for you.
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Quick Start](#quick-start)
+- [Demo Preview](#demo-preview)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Course Outline](#course-outline)
+- [Project Structure](#project-structure)
+- [Development](#development)
+- [Resources](#resources)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Overview
+
+Learn to fine-tune transformer models using the Hugging Face ecosystem. This course covers:
+
+- **Dataset handling** — Load from CSV, JSON, Parquet, and Hugging Face Hub
+- **Tokenization** — Padding, truncation, and special tokens
+- **Training** — Trainer API with custom configurations
+- **Advanced techniques** — Callbacks, early stopping, imbalanced data
+- **Publishing** — Push models to Hugging Face Hub
+
+---
+
+## Quick Start
+
+```bash
+# Clone and install
+git clone https://github.com/alfredodeza/hf-finetuning.git && cd hf-finetuning
+uv sync --all-extras
+
+# Run the interactive demo
+uv run python demo.py
+
+# Or run an example
+uv run python examples/loading/load_csv.py
+```
+
+Or use **GitHub Codespaces** for zero-setup:
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new?hide_repo_select=true&ref=main)
 
-## Labs
+---
 
-Complete these hands-on labs to reinforce your learning:
+## Demo Preview
 
-| Lab | Topic | Examples Used |
-|-----|-------|---------------|
-| [Lab 1: Loading and Exploring Datasets](./labs/lab-1.md) | Load data from CSV, JSON, Parquet, and Hugging Face Hub | [examples/loading](./examples/loading/) |
-| [Lab 2: Transformations and Tokenization](./labs/lab-2.md) | Transform datasets with map, filter, and tokenize text | [examples/transform](./examples/transform/), [examples/tokenize](./examples/tokenize/) |
-| [Lab 3: Custom Datasets and Data Augmentation](./labs/lab-3.md) | Create custom datasets and handle imbalanced data | [examples/augment](./examples/augment/), [examples/imbalance](./examples/imbalance/) |
-| [Lab 4: Training with Trainer API](./labs/lab-4.md) | Train models and run inference | [examples/training](./examples/training/), [examples/models](./examples/models/), [examples/inferencing](./examples/inferencing/) |
-| [Lab 5: Advanced Training and Callbacks](./labs/lab-5.md) | Metrics, optimization, early stopping, and debugging | [examples/custom](./examples/custom/), [examples/callback](./examples/callback/) |
-| [Lab 6: Publishing Models](./labs/lab-6.md) | Publish models to Hugging Face Hub | [examples/publishing](./examples/publishing/) |
+![Demo](./assets/demo.gif)
+
+Run `uv run python demo.py` to see the interactive demo.
+
+---
+
+## Installation
+
+### Option 1: GitHub Codespaces (Recommended)
+
+Click the badge above — Python and all dependencies are pre-configured.
+
+### Option 2: Local Setup with uv
+
+```bash
+# Install uv (if needed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone and install
+git clone https://github.com/alfredodeza/hf-finetuning.git
+cd hf-finetuning
+uv sync --all-extras
+```
+
+### Option 3: Traditional pip
+
+```bash
+git clone https://github.com/alfredodeza/hf-finetuning.git
+cd hf-finetuning
+python -m venv .venv
+source .venv/bin/activate
+pip install -r examples/requirements.txt
+```
+
+---
+
+## Usage
+
+### Run Examples
+
+```bash
+# Dataset loading
+uv run python examples/loading/load_csv.py
+uv run python examples/loading/load_hub.py
+
+# Tokenization
+uv run python examples/tokenize/padding.py
+
+# Training
+uv run python examples/training/train_classifier.py
+
+# Inference
+uv run python examples/inferencing/predict.py
+```
+
+### Complete the Labs
+
+| Lab | Topic | Examples |
+|-----|-------|----------|
+| [Lab 1](./labs/lab-1.md) | Loading and Exploring Datasets | `loading/` |
+| [Lab 2](./labs/lab-2.md) | Transformations and Tokenization | `transform/`, `tokenize/` |
+| [Lab 3](./labs/lab-3.md) | Custom Datasets and Augmentation | `augment/`, `imbalance/` |
+| [Lab 4](./labs/lab-4.md) | Training with Trainer API | `training/`, `models/` |
+| [Lab 5](./labs/lab-5.md) | Advanced Training and Callbacks | `custom/`, `callback/` |
+| [Lab 6](./labs/lab-6.md) | Publishing Models | `publishing/` |
+
+---
 
 ## Course Outline
 
@@ -46,37 +154,54 @@ Complete these hands-on labs to reinforce your learning:
 
 ### Lesson 4: Advanced Training
 - [Training callbacks and logging](./examples/callback/)
-- [Optimization techniques](./examples/optimize/)
+- [Optimization techniques](./examples/custom/)
 
 ### Lesson 5: Inference and Publishing
 - [Running inference](./examples/inferencing/)
 - [Publishing models to Hugging Face Hub](./examples/publishing/)
 
-## Local Setup
+---
 
-If you prefer to work locally instead of using Codespaces:
+## Project Structure
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/alfredodeza/hf-finetuning.git
-   cd hf-finetuning
-   ```
+```
+huggingface-fine-tuning/
+├── examples/
+│   ├── loading/      # Dataset loading (CSV, JSON, Hub)
+│   ├── transform/    # Data transformations
+│   ├── tokenize/     # Tokenization examples
+│   ├── augment/      # Data augmentation
+│   ├── imbalance/    # Handling imbalanced data
+│   ├── models/       # Pre-trained models
+│   ├── training/     # Trainer API usage
+│   ├── custom/       # Custom configurations
+│   ├── callback/     # Training callbacks
+│   ├── inferencing/  # Running inference
+│   └── publishing/   # Publishing to Hub
+├── labs/             # Hands-on lab instructions
+├── tests/            # Test suite
+└── demo.py           # Interactive demo
+```
 
-2. Create a virtual environment:
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
+---
 
-3. Install dependencies:
-   ```bash
-   pip install -r examples/requirements.txt
-   ```
+## Development
 
-4. Open in VS Code:
-   ```bash
-   code .
-   ```
+```bash
+# Install with dev dependencies
+uv sync --all-extras
+
+# Run tests
+uv run pytest tests/ -v
+
+# Lint code
+uv run ruff check examples/
+
+# Format code
+uv run ruff format examples/
+```
+
+---
 
 ## Resources
 
@@ -85,12 +210,30 @@ If you prefer to work locally instead of using Codespaces:
 - [Datasets Library](https://huggingface.co/docs/datasets)
 - [Hugging Face Course](https://huggingface.co/course)
 
-**Coursera Courses**
+**Related Courses:**
 
-- [MLOps Machine Learning Operations Specialization](https://www.coursera.org/specializations/mlops-machine-learning-duke)
-- [Linux and Bash for Data Engineering](https://www.coursera.org/learn/linux-and-bash-for-data-engineering-duke)
-- [Open Source Platforms for MLOps](https://www.coursera.org/learn/open-source-platforms-duke)
-- [Python Essentials for MLOps](https://www.coursera.org/learn/python-essentials-mlops-duke)
-- [Web Applications and Command-Line tools for Data Engineering](https://www.coursera.org/learn/web-app-command-line-tools-for-data-engineering-duke)
-- [Python and Pandas for Data Engineering](https://www.coursera.org/learn/python-and-pandas-for-data-engineering-duke)
-- [Scripting with Python and SQL for Data Engineering](https://www.coursera.org/learn/scripting-with-python-sql-for-data-engineering-duke)
+- [MLOps Specialization](https://www.coursera.org/specializations/mlops-machine-learning-duke)
+- [Python for MLOps](https://www.coursera.org/learn/python-essentials-mlops-duke)
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+1. Fork the repository
+2. Create a feature branch
+3. Run tests: `uv run pytest tests/`
+4. Submit a pull request
+
+---
+
+## License
+
+Apache License 2.0 — see [LICENSE](LICENSE) for details.
+
+---
+
+<p align="center">
+  Made with care by <a href="https://paiml.com">Pragmatic AI Labs</a>
+</p>

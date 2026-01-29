@@ -1,0 +1,23 @@
+# PMAT Quality Gates Configuration
+# Defines thresholds for quality checks
+
+[gates]
+enabled = true
+fail_on_violation = false
+
+[thresholds]
+# Code complexity
+max_cyclomatic = 15
+max_cognitive = 20
+
+# Documentation
+min_docstring_coverage = 50
+
+# Test coverage (relaxed for demo repository)
+min_coverage = 0
+
+# Dead code
+max_dead_code_files = 10
+
+# Technical debt
+max_satd_density = 0.05

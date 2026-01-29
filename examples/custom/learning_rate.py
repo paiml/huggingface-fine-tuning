@@ -1,13 +1,11 @@
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
-from transformers import TrainingArguments, Trainer
-from datasets import Dataset
-import pandas as pd
-import torch
 import numpy as np
+import pandas as pd
+from datasets import Dataset
 from sklearn.metrics import accuracy_score
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments
 
 # 1. Load your CSV
-df = pd.read_csv('status.csv')
+df = pd.read_csv("status.csv")
 
 # 2. Convert to HuggingFace Dataset
 dataset = Dataset.from_pandas(df)
@@ -19,18 +17,20 @@ print(f"Test: {len(split_dataset['test'])} examples")
 
 # 4. Load model for classification (2 labels: open/closed)
 model = AutoModelForSequenceClassification.from_pretrained(
-    "bert-base-uncased", 
-    num_labels=2  # Binary classification
+    "bert-base-uncased",
+    num_labels=2,  # Binary classification
 )
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
 
 # 5. Tokenize function
 def tokenize_and_label(examples):
     # Tokenize
-    tokenized = tokenizer(examples['status'], truncation=True, padding=True)
+    tokenized = tokenizer(examples["status"], truncation=True, padding=True)
     # Add labels (convert to list if single value)
-    tokenized['labels'] = examples['Blankets_Creek']
+    tokenized["labels"] = examples["Blankets_Creek"]
     return tokenized
+
 
 tokenized_datasets = split_dataset.map(tokenize_and_label, batched=True)
 
@@ -46,12 +46,14 @@ training_args = TrainingArguments(
     learning_rate=2e-5,
 )
 
+
 def compute_metrics(eval_pred):
     """Calculate accuracy from predictions"""
     predictions, labels = eval_pred
     predictions = np.argmax(predictions, axis=1)
     accuracy = accuracy_score(labels, predictions)
     return {"accuracy": accuracy}
+
 
 # 7. Create trainer
 trainer = Trainer(

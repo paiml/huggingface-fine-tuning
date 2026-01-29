@@ -1,18 +1,20 @@
 # run_inference.py
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
-import torch
 import sys
+
+import torch
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 model_name = sys.argv[-1]
 
 # 1. Load the trained model
-model = AutoModelForSequenceClassification.from_pretrained("./"+model_name)
-tokenizer = AutoTokenizer.from_pretrained("./"+model_name)
+model = AutoModelForSequenceClassification.from_pretrained("./" + model_name)
+tokenizer = AutoTokenizer.from_pretrained("./" + model_name)
 
 # 2. Setup device
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
 print(f"Model loaded on {device}")
+
 
 # 3. Prediction function
 def predict_trail_status(text):
@@ -23,6 +25,7 @@ def predict_trail_status(text):
     confidence = torch.softmax(outputs.logits, dim=1)[0][prediction].item()
     return prediction, confidence
 
+
 # 4. Test it!
 test_cases = [
     "trails are open today",
@@ -30,7 +33,7 @@ test_cases = [
     "blankets creek is open",
     "everything is closed",
     "all trails are open yippie!!",
-    "blankets creek is closed rope mill is open"
+    "blankets creek is closed rope mill is open",
 ]
 
 print("\nTrail Status Predictions:")

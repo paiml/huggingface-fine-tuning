@@ -1,0 +1,28 @@
+name: Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for secrets
+        run: |
+          # Simple check for common secret patterns
+          if grep -rE "(api_key|secret|password)\s*=\s*['\"][^'\"]+['\"]" examples/ --include="*.py"; then
+            echo "Warning: Potential hardcoded secrets found"
+          fi
+
+      - name: Check for unsafe patterns
+        run: |
+          # Check for eval/exec usage
+          if grep -rE "eval\(|exec\(" examples/ --include="*.py"; then
+            echo "Warning: eval/exec usage found - review for safety"
+          fi

@@ -13,14 +13,13 @@ print(f"Length: {len(truncated_end['input_ids'])}")
 print(f"First 10 tokens: {tokenizer.convert_ids_to_tokens(truncated_end['input_ids'][:10])}")
 
 # 2. Truncate from start (using only=True for older tokenizers)
-truncated_start = tokenizer(long_status, truncation='only_first', max_length=20)
+truncated_start = tokenizer(long_status, truncation="only_first", max_length=20)
 print("\n2. Truncate long sequences:")
 print(f"Length: {len(truncated_start['input_ids'])}")
 
 # 3. Return overflow with sliding window
 print("\n3. Return overflowing tokens:")
-long_result = tokenizer(long_status, truncation='only_first', max_length=30, 
-                        return_overflowing_tokens=True, stride=10)
+long_result = tokenizer(long_status, truncation="only_first", max_length=30, return_overflowing_tokens=True, stride=10)
 print(f"Created {len(long_result['input_ids'])} chunks")
 print(f"Chunk sizes: {[len(chunk) for chunk in long_result['input_ids']]}")
 

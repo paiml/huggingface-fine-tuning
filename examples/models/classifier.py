@@ -1,11 +1,9 @@
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
-from transformers import TrainingArguments, Trainer
-from datasets import Dataset
 import pandas as pd
-import torch
+from datasets import Dataset
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments
 
 # 1. Load your CSV
-df = pd.read_csv('status.csv')
+df = pd.read_csv("status.csv")
 
 # 2. Convert to HuggingFace Dataset
 dataset = Dataset.from_pandas(df)
@@ -17,20 +15,22 @@ print(f"Test: {len(split_dataset['test'])} examples")
 
 # 4. Load model for classification (2 labels: open/closed)
 model = AutoModelForSequenceClassification.from_pretrained(
-    "bert-base-uncased", 
-    num_labels=2  # Binary classification
+    "bert-base-uncased",
+    num_labels=2,  # Binary classification
 )
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
+
 # 5. Tokenize function
-#def tokenize_function(examples):
+# def tokenize_function(examples):
 #    return tokenizer(examples['status'], truncation=True, padding=True)
 def tokenize_and_label(examples):
     # Tokenize
-    tokenized = tokenizer(examples['status'], truncation=True, padding=True)
+    tokenized = tokenizer(examples["status"], truncation=True, padding=True)
     # Add labels (convert to list if single value)
-    tokenized['labels'] = examples['Blankets_Creek']
+    tokenized["labels"] = examples["Blankets_Creek"]
     return tokenized
+
 
 tokenized_datasets = split_dataset.map(tokenize_and_label, batched=True)
 
@@ -63,12 +63,12 @@ tokenizer.save_pretrained("./trail_classifier")
 
 
 ## 9. Test prediction
-#device = "cuda" if torch.cuda.is_available() else "cpu"
-#model.to(device)
-#sample_text = "trails are open today"
-#inputs = tokenizer(sample_text, return_tensors="pt").to(device)
-#outputs = model(**inputs)
-#prediction = outputs.logits.argmax().item()
+# device = "cuda" if torch.cuda.is_available() else "cpu"
+# model.to(device)
+# sample_text = "trails are open today"
+# inputs = tokenizer(sample_text, return_tensors="pt").to(device)
+# outputs = model(**inputs)
+# prediction = outputs.logits.argmax().item()
 #
-#print(f"\nPrediction for: '{sample_text}'")
-#print(f"Blankets Creek: {'OPEN ✅' if prediction == 1 else 'CLOSED ❌'}")
+# print(f"\nPrediction for: '{sample_text}'")
+# print(f"Blankets Creek: {'OPEN ✅' if prediction == 1 else 'CLOSED ❌'}")

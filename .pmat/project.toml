@@ -1,0 +1,16 @@
+# PMAT Project Configuration
+# See: https://github.com/paiml/pmat
+
+[project]
+version = "2.214.0"
+name = "huggingface-fine-tuning"
+type = "demo"
+
+[quality]
+min_coverage = 0
+max_complexity = 15
+max_cognitive = 20
+
+[gates]
+enabled = true
+strict = false
