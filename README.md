@@ -24,6 +24,7 @@
 - [Demo Preview](#demo-preview)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Capstone Project](#capstone-project)
 - [Course Outline](#course-outline)
 - [Project Structure](#project-structure)
 - [Development](#development)
@@ -132,6 +133,10 @@ uv run python examples/inferencing/predict.py
 | [Lab 4](./labs/lab-4.md) | Training with Trainer API | `training/`, `models/` |
 | [Lab 5](./labs/lab-5.md) | Advanced Training and Callbacks | `custom/`, `callback/` |
 | [Lab 6](./labs/lab-6.md) | Publishing Models | `publishing/` |
+
+### Capstone Project
+
+After completing all labs, build a production-ready **Sentiment Analysis Pipeline** in the [Capstone Project](./docs/capstone-project.md). This project combines data loading, tokenization, training, callbacks, and Hub publishing into a complete fine-tuning workflow.
 
 ---
 
