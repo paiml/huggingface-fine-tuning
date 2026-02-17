@@ -1,7 +1,7 @@
 # Fine-tuning with Hugging Face
 
 <p align="center">
-  <a href="https://ds500.paiml.com" title="Pragmatic AI Labs">
+  <a href="https://www.coursera.org/learn/fine-tuning-transformers-with-hugging-face?specialization=hugging-face-ai-development" title="Pragmatic AI Labs">
     <img src="./assets/banner.svg" alt="Fine-tuning with Hugging Face" width="600">
   </a>
 </p>
